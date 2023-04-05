@@ -1,4 +1,4 @@
-# Next.js Teslo Shop App
+# Next.js Tienda De las Hermanas 
 
 Para correr localmente, se necesita la base de datos
 ```
