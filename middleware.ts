@@ -1,51 +1,52 @@
-import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
-import * as jose from "jose";
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server';
+
 import { getToken } from "next-auth/jwt";
 
-export async function middleware(req: NextRequest, ev: NextFetchEvent) {
-
-    
-  if (req.nextUrl.pathname.startsWith('/checkout')) {
-
-    
-    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
+export async function middleware(req: NextRequest ) {
+     
+    const session: any = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
     // console.log(session);
     if(!session) {
+        if (req.nextUrl.pathname.startsWith('/api/admin')) {
+            return NextResponse.redirect(new URL('/api/auth/unauthorized', req.url));
+        }
         const requestedPage = req.nextUrl.pathname;
         const url = req.nextUrl.clone();
         url.pathname = `/auth/login`;
         url.search = `p=${requestedPage}`
-        return NextResponse.redirect(url);
-
-
-        //codigo que no anduvo:
-        // const {protocol, host, pathname} = request.nextUrl;
-        // return NextResponse.redirect(`${protocol}//${host}/auth/login?p=${pathname}`);
-        
+        return NextResponse.redirect(url);        
     }
+
+    const validRoles = [ 'admin', 'super-user', 'SEO']
+
+    if (req.nextUrl.pathname.startsWith('/admin')) {
+ 
+        if (!validRoles.includes( session.user.role )) {
+            const url = req.nextUrl.clone()
+            url.pathname = '/'
+            return NextResponse.redirect(url)
+        }
+    }
+
+    if (req.nextUrl.pathname.startsWith('/api/admin')) {
+ 
+        if (!validRoles.includes(session.user.role)) {
+            return NextResponse.redirect(new URL('/api/auth/unauthorized', req.url));
+        }
+ 
+    }
+
     return NextResponse.next();
-    
-    // Codigo viejo:
-    /*     const token = request.cookies.get('token');
-        
-        try {
-            await jose.jwtVerify(
-                token || "",
-                new TextEncoder().encode(process.env.JWT_SECRET_SEED || "")
-            );
-            //If no error is thrown, the JWT is valid, you can even the payload if necessary
-            return NextResponse.next();
-        } catch (error) {
-            console.error(`JWT Invalid or not signed in`, {error})
-            const {protocol, host, pathname} = request.nextUrl;
-            return NextResponse.redirect(
-                `${protocol}//${host}/auth/login?p=${pathname}`
-            );   
-        }     */
-  }
 
 }
 
 export const config = {
-    matcher: ['/checkout/:path*'],
+    matcher: [
+        '/checkout/:path*',
+        '/admin/:path',
+        '/admin/users/:path',
+        '/admin/orders/:path',
+        '/api/admin/:path',
+    ],
 };

@@ -6,13 +6,19 @@ import AdminPanelSettings from '@mui/icons-material/AdminPanelSettings';
 import CategoryOutlined from '@mui/icons-material/CategoryOutlined';
 import ConfirmationNumberOutlined from '@mui/icons-material/ConfirmationNumberOutlined';
 import EscalatorWarningOutlined from '@mui/icons-material/EscalatorWarningOutlined';
+// import AcUnitIcon from '@mui/icons-material/AcUnit';
 import FemaleOutlined from '@mui/icons-material/FemaleOutlined';
 import LoginOutlined from '@mui/icons-material/LoginOutlined';
-import MaleOutlined from '@mui/icons-material/MaleOutlined';
+// import MaleOutlined from '@mui/icons-material/MaleOutlined';
 import SearchOutlined from '@mui/icons-material/SearchOutlined';
 import VpnKeyOutlined from '@mui/icons-material/VpnKeyOutlined'
+import abrigos from '../../public/icons/icons8-outlined-fireman-coat-50.png';
+import outlinedpants from '../../public/icons/icons8-outlined-jeans-50.png';
+import outlinedsweater from '../../public/icons/icons8-outlined-sweater-50.png';
+import Image from "next/image"
 
 import { AuthContext, UiContext } from "../../context"
+import { DashboardOutlined } from "@mui/icons-material";
 
 
 export const SideMenu = () => {
@@ -67,7 +73,7 @@ export const SideMenu = () => {
                 </ListItem>
 
                 
-                <ListItem 
+                {/* <ListItem 
                     button 
                     sx={{ display: { xs: '', sm: 'none' } }}
                     onClick={ () => navigateTo('/category/men')}
@@ -76,9 +82,68 @@ export const SideMenu = () => {
                         <MaleOutlined/>
                     </ListItemIcon>
                     <ListItemText primary={'Hombres'} />
+                </ListItem> */}
+                <ListItem 
+                    button 
+                    sx={{ display: { xs: '', sm: 'none' } }}
+                    onClick={ () => navigateTo('/category/men')}
+                >
+                    <ListItemIcon>
+                        <Image
+                            src={outlinedsweater} 
+                            width={20} //56
+                            height={20}
+                            quality={100}
+                            alt='Pants Logo'
+                        />
+                    </ListItemIcon>
+                    <ListItemText primary={'Sweaters'} />
+                </ListItem>
+                <ListItem 
+                    button 
+                    sx={{ display: { xs: '', sm: 'none' } }}
+                    onClick={ () => navigateTo('/category/men')}
+                >
+                    <ListItemIcon>
+                        <Image
+                            src={abrigos} 
+                            width={20} //56
+                            height={20}
+                            quality={100}
+                            alt='Pants Logo'
+                        />
+                    </ListItemIcon>
+                    <ListItemText primary={'Abrigos'} />
+                </ListItem>
+                <ListItem 
+                    button 
+                    sx={{ display: { xs: '', sm: 'none' } }}
+                    onClick={ () => navigateTo('/category/men')}
+                >
+                    <ListItemIcon>
+                        <Image
+                            src={outlinedpants} 
+                            width={20} //56
+                            height={20}
+                            quality={100}
+                            alt='Pants Logo'
+                        />
+                    </ListItemIcon>
+                    <ListItemText primary={'Pantalones'} />
+                </ListItem>
+                <ListItem 
+                    button 
+                    sx={{ display: { xs: '', sm: 'none' } }}
+                    onClick={ () => navigateTo('/category/men')}
+                >
+                    <ListItemIcon>
+                        <FemaleOutlined/>
+                    </ListItemIcon>
+                    <ListItemText primary={'Nueva colección'} />
                 </ListItem>
 
-                <ListItem button 
+
+                {/* <ListItem button 
                     sx={{ display: { xs: '', sm: 'none' } }}
                     onClick={ () => navigateTo('/category/women')}
                 >
@@ -86,9 +151,9 @@ export const SideMenu = () => {
                         <FemaleOutlined/>
                     </ListItemIcon>
                     <ListItemText primary={'Mujeres'} />
-                </ListItem>
+                </ListItem> */}
 
-                <ListItem button 
+                {/* <ListItem button 
                     sx={{ display: { xs: '', sm: 'none' } }}
                     onClick={ () => navigateTo('/category/kid')}
                 >
@@ -96,7 +161,8 @@ export const SideMenu = () => {
                         <EscalatorWarningOutlined/>
                     </ListItemIcon>
                     <ListItemText primary={'Niños'} />
-                </ListItem>
+                </ListItem> */}
+
                 <Divider  sx={{ display: { xs: '', sm: 'none' } }} />
 
                 {
@@ -152,20 +218,37 @@ export const SideMenu = () => {
                             <Divider />
                             <ListSubheader>Admin Panel</ListSubheader>
 
+                            <ListItem 
+                                button
+                                onClick={ () => navigateTo('/admin/') }
+                            >
+                                <ListItemIcon>
+                                    <DashboardOutlined/>
+                                </ListItemIcon>
+                                <ListItemText primary={'Dashboard'} />
+                            </ListItem>
+
                             <ListItem button>
                                 <ListItemIcon>
                                     <CategoryOutlined/>
                                 </ListItemIcon>
                                 <ListItemText primary={'Productos'} />
                             </ListItem>
-                            <ListItem button>
+
+                            <ListItem 
+                                button
+                                onClick={ () => navigateTo('/admin/orders') }
+                            >
                                 <ListItemIcon>
                                     <ConfirmationNumberOutlined/>
                                 </ListItemIcon>
                                 <ListItemText primary={'Ordenes'} />
                             </ListItem>
 
-                            <ListItem button>
+                            <ListItem 
+                                button
+                                onClick={ () => navigateTo('/admin/users') }
+                            >
                                 <ListItemIcon>
                                     <AdminPanelSettings/>
                                 </ListItemIcon>

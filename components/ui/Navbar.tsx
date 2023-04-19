@@ -11,7 +11,7 @@ import { useRouter } from "next/router"
 
 import { CartContext, UiContext } from "../../context"
 import Image from "next/image"
-import shopLogo from '../../public/Mateo Shop Logo - Black.png';
+import shopLogo from '../../public/De las Hermanas Logo.png';
 
 
 export const Navbar: FC = () => {
@@ -36,14 +36,19 @@ export const Navbar: FC = () => {
         <Toolbar>
             <NextLink href='/' passHref>
                 <Link display='flex' alignItems='center' >
-                    <Image 
+                    {/* <Image 
                         src={shopLogo} 
-                        width={60} //56
-                        height={30} //25
+                        width={220} //56
+                        height={95} //25
+                        quality={100}
+                        style={{ 
+                            marginTop: '11px'
+                         }}
                         alt='Shop Logo'
-                    />
-                    <Typography variant="h6">  Mateo |</Typography>
-                    <Typography sx={{ ml: 0.5 }} >Shop</Typography>
+                    /> */}
+                    <Typography variant="h5" sx={{ display: { xs: 'none', sm:'block' } }}>  De las Hermanas |</Typography>
+                    <Typography variant="h6" sx={{ display: { xs: '', sm: 'none' } }} >  De las Hermanas </Typography>
+                    <Typography sx={{ ml: 0.5, display: { xs: 'none', sm:'block' } }}  variant="body1" >Indumentaria</Typography>
                 </Link>
             </NextLink>
 
@@ -52,19 +57,29 @@ export const Navbar: FC = () => {
             <Box sx={{ display: isSearchVisible ? 'none' :  { xs: 'none', sm: 'block' } }} 
                 className='fadeIn'
             >           
-                <NextLink href='/category/men' passHref>
+                <NextLink href='/search/shirt' passHref>
                     <Link>
-                        <Button color={ asPath === '/category/men' ? 'primary' : 'info' } >Hombres</Button>
+                        <Button color={ asPath === '/search/shirt' ? 'primary' : 'info' } >Sweaters</Button>
                     </Link>
                 </NextLink>
-                <NextLink href='/category/women' passHref>
+                <NextLink href='/search/hoodie' passHref>
                     <Link>
-                        <Button color={ asPath === '/category/women' ? 'primary' : 'info' } >Mujeres</Button>
+                        <Button color={ asPath === '/search/hoodie' ? 'primary' : 'info' } >Abrigos</Button>
                     </Link>
                 </NextLink>
                 <NextLink href='/category/kid' passHref>
                     <Link>
-                        <Button color={ asPath === '/category/kid' ? 'primary' : 'info' } >Niños</Button>
+                        <Button color={ asPath === '/category/kid' ? 'primary' : 'info' } >Pantalones</Button>
+                    </Link>
+                </NextLink>
+                {/* <NextLink href='/category/kid' passHref>
+                    <Link>
+                        <Button color={ asPath === '/category/kid' ? 'primary' : 'info' } >Vestidos </Button>
+                    </Link>
+                </NextLink> */}
+                <NextLink href='/category/kid' passHref>
+                    <Link>
+                        <Button color={ asPath === '/category/men' ? 'primary' : 'info' } >Nueva colección</Button>
                     </Link>
                 </NextLink>
             </Box>
