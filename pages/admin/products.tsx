@@ -72,7 +72,7 @@ const ProductsPage = () => {
   return (
     <AdminLayout 
         title={`Productos (${data?.length})`} 
-        subTitle={'Mantenimiento de products'}
+        subTitle={'Mantenimiento de productos'}
         icon={ <CategoryOutlined/> }
     >
         <Box display='flex' justifyContent='end' sx={{ mb: 2}}  >

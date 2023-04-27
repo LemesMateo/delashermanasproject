@@ -12,10 +12,27 @@ export const ProductCard: FC<Props> = ({product}) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
+    function generateRandom(min = 0, max = 100) {
+
+        // find diff
+        let difference = max - min;
+    
+        // generate random number 
+        let rand = Math.random();
+    
+        // multiply with difference 
+        rand = Math.floor( rand * difference);
+    
+        // add with min value 
+        rand = rand + min;
+    
+        return rand;
+    }
+
 
     const productImage = useMemo(() => {
         return isHovered
-        ? product.images[1]
+        ? product.images[generateRandom(1,product.images.length)]
         : product.images[0]
     }, [isHovered, product.images])
 

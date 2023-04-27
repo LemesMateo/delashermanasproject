@@ -67,7 +67,7 @@ export const Navbar: FC = () => {
                         <Button color={ asPath === '/search/hoodie' ? 'primary' : 'info' } >Abrigos</Button>
                     </Link>
                 </NextLink>
-                <NextLink href='/category/kid' passHref>
+                <NextLink href='/search/pants' passHref>
                     <Link>
                         <Button color={ asPath === '/category/kid' ? 'primary' : 'info' } >Pantalones</Button>
                     </Link>

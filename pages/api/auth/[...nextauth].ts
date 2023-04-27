@@ -26,10 +26,10 @@ export const authOptions:any = {
       }
     }),
 
-    GithubProvider({
+   /* GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-    } as any ),
+    } as any ), */
     /* GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET

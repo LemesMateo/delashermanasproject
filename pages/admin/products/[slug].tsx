@@ -2,8 +2,9 @@ import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import NextLink from 'next/link'
 
-import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField } from '@mui/material';
+import { Typography, Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField, Link } from '@mui/material';
 import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 
 
@@ -14,7 +15,7 @@ import { tesloApi } from '../../../api';
 import { Product } from '../../../models';
 
 
-const validTypes  = ['shirts','pants','hoodies','hats']
+const validTypes  = ['shirts','pants','hoodies','hats', 'remera']
 const validGender = ['men','women','kid','unisex']
 const validSizes = ['XS','S','M','L','XL','XXL','XXXL']
 
@@ -154,6 +155,11 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
             subTitle={`Editando: ${ product.title }`}
             icon={ <DriveFileRenameOutline /> }
         >
+        <NextLink href='/admin/products' passHref>
+                <Link display='flex' alignItems='center' > 
+                    <Button color={ 'primary' } size="large" variant="outlined" >Volver a Productos</Button>
+                </Link>
+        </NextLink>
             <form onSubmit={ handleSubmit( onSubmit ) } >
                 <Box display='flex' justifyContent='end' sx={{ mb: 1 }}>
                     <Button 
